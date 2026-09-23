@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form - Form Automation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .form-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px 40px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #38bdf8;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+        .field-group {
+            margin-bottom: 18px;
+        }
+        label.field-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            background: #0f172a;
+            border: 1.5px solid #334155;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #f8fafc;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+        }
+        .options-row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #e2e8f0;
+            cursor: pointer;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            accent-color: #38bdf8;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+        button[type="submit"]:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+        #result {
+            margin-top: 18px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+        #result.success {
+            display: block;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            color: #34d399;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2>Autonomous Registration Form</h2>
+        <p class="subtitle">Fill out your details or let our WhatsApp AI agent auto-fill it.</p>
+
+        <form id="registrationForm">
+            <div class="field-group">
+                <label class="field-label">Full Name *</label>
+                <input type="text" name="name" required placeholder="e.g. Ayushmaan Rathore">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Email Address *</label>
+                <input type="email" name="email" required placeholder="e.g. ayush@example.com">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Phone Number</label>
+                <input type="tel" name="phone" placeholder="e.g. 9876543210">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">City *</label>
+                <select name="city" required>
+                    <option value="">Select City</option>
+                    <option value="indore">Indore</option>
+                    <option value="bhopal">Bhopal</option>
+                    <option value="ujjain">Ujjain</option>
+                    <option value="dewas">Dewas</option>
+                </select>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Gender</label>
+                <div class="options-row">
+                    <label class="option-label"><input type="radio" name="gender" value="male"> Male</label>
+                    <label class="option-label"><input type="radio" name="gender" value="female"> Female</label>
+                    <label class="option-label"><input type="radio" name="gender" value="other"> Other</label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Skills</label>
+                <div class="options-row">
+                    <label class="option-label"><input type="checkbox" name="skills" value="python"> Python</label>
+                    <label class="option-label"><input type="checkbox" name="skills" value="django"> Django</label>
+                    <label class="option-label"><input type="checkbox" name="skills" value="ml"> Machine Learning</label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Feedback</label>
+                <textarea name="feedback" placeholder="Enter any comments or feedback"></textarea>
+            </div>
+
+            <button type="submit">Submit Form</button>
+        </form>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var res = document.getElementById("result");
+            res.className = "success";
+            res.innerText = "🎉 Form submitted successfully!";
+        });
+    </script>
+
+</body>
+</html>

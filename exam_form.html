@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 University Semester Exam & Knowledge Form 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --primary-accent: #6366f1;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --input-bg: rgba(15, 23, 42, 0.6);
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            margin: 0;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 650px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #818cf8;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-label, .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            padding: 0.9rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        #result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-card">
+        <h1>🎓 Semester Exam & Knowledge Form 2026</h1>
+        <p class="subtitle">Autonomous Dynamic Exam Form Automation Demonstration</p>
+
+        <form id="examForm" onsubmit="event.preventDefault(); document.getElementById('result').style.display='block';">
+            <!-- Student Details -->
+            <div class="section-title">👤 Candidate Information</div>
+
+            <div class="form-group">
+                <label for="student_name">Candidate Full Name *</label>
+                <input type="text" id="student_name" name="student_name" placeholder="e.g. Ayushmaan Rathore" required>
+            </div>
+
+            <div class="form-group">
+                <label for="roll_no">University Roll Number *</label>
+                <input type="text" id="roll_no" name="roll_no" placeholder="e.g. 0827CS201045" required>
+            </div>
+
+            <div class="form-group">
+                <label for="father_name">Father's Name *</label>
+                <input type="text" id="father_name" name="father_name" placeholder="Father's full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="student@university.edu" required>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Select Course / Branch *</label>
+                <select id="course" name="course" required>
+                    <option value="">-- Choose Course --</option>
+                    <option value="B.Tech CS">B.Tech Computer Science</option>
+                    <option value="B.Tech IT">B.Tech Information Technology</option>
+                    <option value="BCA">BCA (Computer Applications)</option>
+                    <option value="MCA">MCA (Master of Computer Applications)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exam_center">Exam Center Preference *</label>
+                <select id="exam_center" name="exam_center" required>
+                    <option value="">-- Choose Center --</option>
+                    <option value="Indore">Indore</option>
+                    <option value="Bhopal">Bhopal</option>
+                    <option value="Ujjain">Ujjain</option>
+                    <option value="Jabalpur">Jabalpur</option>
+                </select>
+            </div>
+
+            <!-- Exam Questions Section -->
+            <div class="section-title">📝 Exam Questions (MCQ & Short Answer)</div>
+
+            <div class="form-group">
+                <label>Q1. What is the capital city of Madhya Pradesh? *</label>
+                <div class="radio-group">
+                    <label class="radio-label"><input type="radio" name="q1" value="Indore" required> Indore</label>
+                    <label class="radio-label"><input type="radio" name="q1" value="Bhopal"> Bhopal</label>
+                    <label class="radio-label"><input type="radio" name="q1" value="Gwalior"> Gwalior</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Q2. Is Python dynamically typed? *</label>
+                <div class="radio-group">
+                    <label class="radio-label"><input type="radio" name="q2" value="Yes" required> Yes</label>
+                    <label class="radio-label"><input type="radio" name="q2" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback">Remarks / Special Requirements</label>
+                <textarea id="feedback" name="feedback" rows="3" placeholder="Any special requests or comments..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Exam Form</button>
+        </form>
+
+        <div id="result">🎉 Exam Form Submitted Successfully!</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: whatsapp-form-agent
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: HEADLESS
+        value: "true"
+      - key: WHATSAPP_ACCESS_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_NUMBER_ID
+        sync: false
+      - key: WHATSAPP_VERIFY_TOKEN
+        value: ayush_secret_123

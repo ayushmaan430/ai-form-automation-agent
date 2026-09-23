@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 Artificial Intelligence & Machine Learning Assessment 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(18, 24, 38, 0.85);
+            --border-color: rgba(99, 102, 241, 0.2);
+            --primary-accent: #6366f1;
+            --secondary-accent: #a855f7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --input-bg: rgba(11, 15, 25, 0.7);
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #1e1b4b 0%, #0b0f19 90%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1rem;
+            margin: 0;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 680px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+            padding: 0.35rem 0.8rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .section-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #c084fc;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 1.75rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label.main-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: #e2e8f0;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .radio-stack, .checkbox-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .choice-label {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.5rem 0.75rem;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .choice-label:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            color: var(--text-main);
+            background: rgba(99, 102, 241, 0.08);
+        }
+
+        .choice-label input:checked + span {
+            color: #818cf8;
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            padding: 0.95rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(168, 85, 247, 0.45);
+        }
+
+        #result {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-card">
+        <span class="badge">AI & ML Examination 2026</span>
+        <h1>🤖 Artificial Intelligence Subject Assessment</h1>
+        <p class="subtitle">Autonomous Dynamic Form Automation Test with Radios, Checkboxes, Dropdown, Textarea & Text Inputs.</p>
+
+        <form id="aiExamForm" onsubmit="event.preventDefault(); document.getElementById('result').style.display='block';">
+            <!-- 1. Candidate Info -->
+            <div class="section-header">👤 Student Candidate Information</div>
+
+            <div class="form-group">
+                <label class="main-label" for="candidate_name">Candidate Full Name *</label>
+                <input type="text" id="candidate_name" name="candidate_name" placeholder="e.g. Ayushmaan Rathore" required>
+            </div>
+
+            <div class="form-group">
+                <label class="main-label" for="roll_number">University Student Roll ID *</label>
+                <input type="text" id="roll_number" name="roll_number" placeholder="e.g. 0827CS201045" required>
+            </div>
+
+            <div class="form-group">
+                <label class="main-label" for="email">Candidate Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="student@aiml.edu" required>
+            </div>
+
+            <div class="form-group">
+                <label class="main-label" for="degree_branch">Academic Degree / Branch *</label>
+                <select id="degree_branch" name="degree_branch" required>
+                    <option value="">-- Choose Branch --</option>
+                    <option value="B.Tech AI & Data Science">B.Tech AI & Data Science</option>
+                    <option value="B.Tech Computer Science">B.Tech Computer Science</option>
+                    <option value="M.Tech Machine Learning">M.Tech Machine Learning</option>
+                    <option value="MCA Artificial Intelligence">MCA Artificial Intelligence</option>
+                </select>
+            </div>
+
+            <!-- 2. AI MCQs (Radio Buttons) -->
+            <div class="section-header">🧠 AI Subject Questions (Radio Buttons)</div>
+
+            <div class="form-group">
+                <label class="main-label">Q1. What does NLP stand for in Artificial Intelligence? *</label>
+                <div class="radio-stack">
+                    <label class="choice-label"><input type="radio" name="q1" value="Natural Language Processing" required> <span>Natural Language Processing</span></label>
+                    <label class="choice-label"><input type="radio" name="q1" value="Neural Logic Protocol"> <span>Neural Logic Protocol</span></label>
+                    <label class="choice-label"><input type="radio" name="q1" value="Network Layer Program"> <span>Network Layer Program</span></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="main-label">Q2. Which machine learning algorithm is used for Classification? *</label>
+                <div class="radio-stack">
+                    <label class="choice-label"><input type="radio" name="q2" value="Logistic Regression" required> <span>Logistic Regression</span></label>
+                    <label class="choice-label"><input type="radio" name="q2" value="Linear Equation"> <span>Linear Equation</span></label>
+                    <label class="choice-label"><input type="radio" name="q2" value="Bubble Sort"> <span>Bubble Sort</span></label>
+                </div>
+            </div>
+
+            <!-- 3. Checkboxes (Multi-Select) -->
+            <div class="section-header">🛠️ Deep Learning Frameworks (Checkboxes)</div>
+
+            <div class="form-group">
+                <label class="main-label">Select Deep Learning Frameworks: *</label>
+                <div class="checkbox-stack">
+                    <label class="choice-label"><input type="checkbox" name="frameworks" value="PyTorch"> <span>PyTorch</span></label>
+                    <label class="choice-label"><input type="checkbox" name="frameworks" value="TensorFlow"> <span>TensorFlow</span></label>
+                    <label class="choice-label"><input type="checkbox" name="frameworks" value="Keras"> <span>Keras</span></label>
+                    <label class="choice-label"><input type="checkbox" name="frameworks" value="Scikit-Learn"> <span>Scikit-Learn</span></label>
+                </div>
+            </div>
+
+            <!-- 4. Dropdown Select -->
+            <div class="section-header">🎯 Preferred AI Specialization (Dropdown)</div>
+
+            <div class="form-group">
+                <label class="main-label" for="specialization">Preferred AI Specialization *</label>
+                <select id="specialization" name="specialization" required>
+                    <option value="">-- Choose AI Specialization --</option>
+                    <option value="Generative AI & LLMs">Generative AI & LLMs</option>
+                    <option value="Computer Vision">Computer Vision</option>
+                    <option value="Robotics & Autonomous Systems">Robotics & Autonomous Systems</option>
+                    <option value="Reinforcement Learning">Reinforcement Learning</option>
+                </select>
+            </div>
+
+            <!-- 5. Subject Explanation (Textarea) -->
+            <div class="section-header">✍️ Subjective Explanation (Textarea)</div>
+
+            <div class="form-group">
+                <label class="main-label" for="explanation">Explain the difference between Supervised and Unsupervised Learning *</label>
+                <textarea id="explanation" name="explanation" rows="3" placeholder="Briefly describe supervised vs unsupervised learning..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Submit AI Assessment Form 🚀</button>
+        </form>
+
+        <div id="result">🎉 AI Assessment Form Submitted Successfully!</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ AI & Tech Live Assessment Form 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(18, 24, 38, 0.9);
+            --border-color: rgba(99, 102, 241, 0.25);
+            --primary-accent: #6366f1;
+            --secondary-accent: #a855f7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --input-bg: rgba(11, 15, 25, 0.75);
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #1e1b4b 0%, #0b0f19 90%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            margin: 0;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 680px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .section-header {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #c084fc;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 1.75rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label.main-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: #e2e8f0;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .choice-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .choice-label {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.55rem 0.85rem;
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .choice-label:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            color: var(--text-main);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .choice-label input:checked + span {
+            color: #818cf8;
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            padding: 0.95rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(168, 85, 247, 0.45);
+        }
+
+        #result {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-card">
+        <span class="badge">Live Test Form 2026</span>
+        <h1>⚡ AI & Tech Candidate Assessment</h1>
+        <p class="subtitle">Complete test form with Text Inputs, Dropdown, Radio MCQs, Checkboxes, and Textarea.</p>
+
+        <form id="assessmentForm" onsubmit="event.preventDefault(); document.getElementById('result').style.display='block';">
+            <!-- 1. Personal & Student Details -->
+            <div class="section-header">👤 Student & Candidate Details</div>
+
+            <div class="form-group">
+                <label class="main-label" for="name">Full Name *</label>
+                <input type="text" id="name" name="name" placeholder="e.g. Ayushmaan Rathore" required>
+            </div>
+
+            <div class="form-group">
+                <label class="main-label" for="roll_number">Student Roll ID *</label>
+                <input type="text" id="roll_number" name="roll_number" placeholder="e.g. 0827AI2026" required>
+            </div>
+
+            <div class="form-group">
+                <label class="main-label" for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="ayush@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label class="main-label" for="phone">Phone / WhatsApp Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="9876543210">
+            </div>
+
+            <div class="form-group">
+                <label class="main-label" for="course">Select Course / Branch *</label>
+                <select id="course" name="course" required>
+                    <option value="">-- Choose Course --</option>
+                    <option value="B.Tech AI & Data Science">B.Tech AI & Data Science</option>
+                    <option value="B.Tech Computer Science">B.Tech Computer Science</option>
+                    <option value="BCA">BCA (Computer Applications)</option>
+                    <option value="MCA">MCA (Master of Computer Applications)</option>
+                </select>
+            </div>
+
+            <!-- 2. AI Questions (Radio Buttons) -->
+            <div class="section-header">🧠 AI Subject Questions (Radio Buttons)</div>
+
+            <div class="form-group">
+                <label class="main-label">Q1. What does AI stand for? *</label>
+                <div class="choice-stack">
+                    <label class="choice-label"><input type="radio" name="q1" value="Artificial Intelligence" required> <span>Artificial Intelligence</span></label>
+                    <label class="choice-label"><input type="radio" name="q1" value="Automated Interface"> <span>Automated Interface</span></label>
+                    <label class="choice-label"><input type="radio" name="q1" value="Advanced Internet"> <span>Advanced Internet</span></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="main-label">Q2. Which programming language is most widely used for AI? *</label>
+                <div class="choice-stack">
+                    <label class="choice-label"><input type="radio" name="q2" value="Python" required> <span>Python</span></label>
+                    <label class="choice-label"><input type="radio" name="q2" value="C++"> <span>C++</span></label>
+                    <label class="choice-label"><input type="radio" name="q2" value="HTML"> <span>HTML</span></label>
+                </div>
+            </div>
+
+            <!-- 3. Skills (Checkboxes) -->
+            <div class="section-header">🛠️ Technical Skills (Checkboxes)</div>
+
+            <div class="form-group">
+                <label class="main-label">Select Skills You Know:</label>
+                <div class="choice-stack">
+                    <label class="choice-label"><input type="checkbox" name="skills" value="Python"> <span>Python</span></label>
+                    <label class="choice-label"><input type="checkbox" name="skills" value="Machine Learning"> <span>Machine Learning</span></label>
+                    <label class="choice-label"><input type="checkbox" name="skills" value="Deep Learning"> <span>Deep Learning</span></label>
+                    <label class="choice-label"><input type="checkbox" name="skills" value="Web Development"> <span>Web Development</span></label>
+                </div>
+            </div>
+
+            <!-- 4. Textarea -->
+            <div class="section-header">✍️ Subjective Question (Textarea)</div>
+
+            <div class="form-group">
+                <label class="main-label" for="feedback">Describe your favorite AI project or why you want to learn AI *</label>
+                <textarea id="feedback" name="feedback" rows="3" placeholder="Write a short note..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Assessment Form 🚀</button>
+        </form>
+
+        <div id="result">🎉 Form Submitted Successfully!</div>
+    </div>
+</body>
+</html>

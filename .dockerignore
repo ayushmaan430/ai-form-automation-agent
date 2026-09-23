@@ -1,0 +1,10 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.log
+.env
+.git/
+cloudflared.exe
+*.png
+test_scan.py
