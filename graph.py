@@ -86,18 +86,36 @@ def form_analyzer(state: AgentState) -> Dict[str, Any]:
         if page.url != form_url and not page.url.endswith(form_url):
             page.goto(form_url, wait_until="domcontentloaded", timeout=15000)
     else:
-        if playwright_instance is None or (browser and not browser.is_connected()):
-            playwright_instance = sync_playwright().start()
-            is_headless = os.getenv("HEADLESS", "false").lower() == "true" or os.name != "nt"
-            browser = playwright_instance.chromium.launch(
-                headless=is_headless,
-                args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
-            )
-            page = browser.new_page()
-        elif page is None or page.is_closed():
-            page = browser.new_page()
+        try:
+            if playwright_instance is None:
+                playwright_instance = sync_playwright().start()
 
-        page.goto(form_url, wait_until="domcontentloaded", timeout=15000)
+            if browser is None or not browser.is_connected():
+                is_headless = os.getenv("HEADLESS", "false").lower() == "true" or os.name != "nt"
+                browser = playwright_instance.chromium.launch(
+                    headless=is_headless,
+                    args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+                )
+
+            if page is None or page.is_closed():
+                page = browser.new_page()
+
+            page.goto(form_url, wait_until="domcontentloaded", timeout=15000)
+        except Exception as e:
+            # Clean up on failure so subsequent attempts retry fresh
+            try:
+                if page and not page.is_closed():
+                    page.close()
+            except Exception:
+                pass
+            page = None
+            try:
+                if browser and browser.is_connected():
+                    browser.close()
+            except Exception:
+                pass
+            browser = None
+            raise e
 
     page.wait_for_timeout(500)
 
@@ -536,15 +554,11 @@ def form_filling(state: AgentState) -> Dict[str, Any]:
     - Textarea
     """
     global page
-    print("\n================================")
-    print("AGENT 3: FORM FILLING")
-    print("================================")
+    session_page = state.get("page")
+    if session_page and not session_page.is_closed():
+        page = session_page
 
-    fields = state.get("fields", [])
-    matched_data = state.get("matched_data", {})
-    filled_fields = []
-
-    if not page:
+    if not page or page.is_closed():
         raise RuntimeError("Playwright page not initialized!")
 
     # 1. Inputs (Text, Email, Tel, Date, Number, Radio, Checkbox)
