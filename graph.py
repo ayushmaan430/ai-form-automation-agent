@@ -561,6 +561,10 @@ def form_filling(state: AgentState) -> Dict[str, Any]:
     if not page or page.is_closed():
         raise RuntimeError("Playwright page not initialized!")
 
+    fields = state.get("fields", [])
+    matched_data = state.get("matched_data", {})
+    filled_fields = []
+
     # 1. Inputs (Text, Email, Tel, Date, Number, Radio, Checkbox)
     inputs = page.locator("input")
     for i in range(inputs.count()):
