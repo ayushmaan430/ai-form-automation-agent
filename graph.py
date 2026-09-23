@@ -440,10 +440,16 @@ def data_matching(state: AgentState) -> Dict[str, Any]:
         "python dynamically typed": "Yes",
         "is python interpreted": "Yes",
         "father of computer": "Charles Babbage",
-        # AI & Machine Learning Knowledge
+        # AI & Computer Science Knowledge
+        "api stand for": "Application Programming Interface",
+        "what does api stand for": "Application Programming Interface",
+        "lifo": "Stack",
+        "last-in, first-out": "Stack",
+        "operates on the lifo": "Stack",
         "ai stand for": "Artificial Intelligence",
         "what does ai stand for": "Artificial Intelligence",
         "widely used for ai": "Python",
+        "used for ai and machine learning": "Python",
         "programming language is most widely used": "Python",
         "nlp stand for": "Natural Language Processing",
         "natural language processing": "Natural Language Processing",
@@ -453,10 +459,13 @@ def data_matching(state: AgentState) -> Dict[str, Any]:
         "explain the difference": "Supervised learning trains models on labeled input-output pairs, whereas unsupervised learning discovers hidden structures and clusters in unlabeled data.",
         "deep learning frameworks": ["PyTorch", "TensorFlow", "Keras"],
         "frameworks": ["PyTorch", "TensorFlow", "Keras"],
-        "specialization": "Generative AI & LLMs",
-        "preferred ai specialization": "Generative AI & LLMs",
-        "degree_branch": "B.Tech AI & Data Science",
-        "favorite ai project": "Building autonomous AI agents and intelligent form automation systems."
+        "specialization": "B.Tech Artificial Intelligence & Data Science",
+        "preferred ai specialization": "B.Tech Artificial Intelligence & Data Science",
+        "degree & branch": "B.Tech Artificial Intelligence & Data Science",
+        "degree_branch": "B.Tech Artificial Intelligence & Data Science",
+        "course": "B.Tech Artificial Intelligence & Data Science",
+        "favorite ai project": "Building autonomous AI agents and intelligent form automation systems.",
+        "why you want to learn artificial intelligence": "I want to master autonomous AI agents and intelligent workflow automation to solve real-world problems."
     }
 
     auto_answer_requested = bool(user_data_normalized.get("_auto_answer") or user_data_normalized.get("auto_answer") or "answer" in user_data_normalized)
