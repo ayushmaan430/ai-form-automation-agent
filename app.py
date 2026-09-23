@@ -279,6 +279,18 @@ def process_user_message(user_id: str, message_text: str) -> str:
 # ==========================================================
 @app.get("/")
 def home():
+    index_path = os.path.join(os.path.dirname(__file__), "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path, media_type="text/html")
+    return {
+        "service": "Autonomous WhatsApp Form Automation Agent",
+        "status": "online",
+        "active_sessions": len(sessions)
+    }
+
+
+@app.get("/api/health")
+def health():
     return {
         "service": "Autonomous WhatsApp Form Automation Agent",
         "status": "online",

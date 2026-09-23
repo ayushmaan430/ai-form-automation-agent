@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ AutoForm AI | Autonomous WhatsApp Form Automation Agent</title>
+  <meta name="description" content="Production-ready Autonomous Agentic AI system that fills, solves exam MCQs, and submits web forms directly via WhatsApp using Playwright, LangGraph, and FastAPI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090a10;
+      --bg-card: rgba(18, 20, 32, 0.75);
+      --bg-card-hover: rgba(28, 31, 50, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(120, 80, 255, 0.35);
+      --primary: #7c3aed;
+      --primary-light: #a78bfa;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(6, 182, 212, 0.15) 0%, transparent 45%);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* Top Nav */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 50px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-green);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      background: rgba(124, 58, 237, 0.15);
+      border: 1px solid var(--border-glow);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-light);
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #ffffff 30%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      max-width: 680px;
+      margin: 0 auto 36px;
+      font-size: 17px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Action Buttons */
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #6d28d9);
+      color: #ffffff;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Grid Sections */
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .card-link:hover {
+      gap: 10px;
+      color: #38bdf8;
+    }
+
+    /* Demo Message Box */
+    .whatsapp-demo-box {
+      background: rgba(18, 20, 32, 0.85);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 60px;
+    }
+
+    .code-block {
+      background: #000000;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 18px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #38bdf8;
+      overflow-x: auto;
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    /* Tech Stack Badges */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .tech-badge {
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Top Header -->
+    <header>
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div>AutoForm AI</div>
+      </div>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Cloud Agent Live 24/7
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-badge">Multi-Agent LangGraph + Playwright System</div>
+      <h1 class="hero-title">Autonomous Form Automation &<br><span>AI Exam Solving Agent</span></h1>
+      <p class="hero-subtitle">
+        Zero-friction form automation that reads any dynamic web or exam form, auto-solves technical MCQs, handles multi-select inputs, and completes submissions directly through WhatsApp.
+      </p>
+      <div class="cta-row">
+        <a href="/google_exam_form.html" target="_blank" class="btn btn-primary">🎓 Open Google Exam Form</a>
+        <a href="/test_form.html" target="_blank" class="btn btn-secondary">⚡ Open Tech Assessment</a>
+        <a href="/sessions" target="_blank" class="btn btn-secondary">📊 View Active Sessions JSON</a>
+      </div>
+    </section>
+
+    <!-- Live Form Demos -->
+    <h2 class="section-title">🧪 Live Interactive Forms Hosted on this Server</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <div class="card-title">Google Assessment Form 2026</div>
+        <div class="card-desc">
+          Official Google Forms style assessment with candidate details, API/LIFO technical MCQs, engineering stream dropdown, and AI motivation textarea.
+        </div>
+        <a href="/google_exam_form.html" target="_blank" class="card-link">Launch Live Form &rarr;</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-title">AI & Tech Assessment Form</div>
+        <div class="card-desc">
+          Assessment portal testing text, tel, email, radio MCQs, multi-skill checkboxes, academic course select, and automated question answering.
+        </div>
+        <a href="/test_form.html" target="_blank" class="card-link">Launch Live Form &rarr;</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <div class="card-title">Deep AI & ML Exam Form</div>
+        <div class="card-desc">
+          Comprehensive exam form featuring NLP, Classification algorithms, framework selection, and detailed machine learning theory evaluation.
+        </div>
+        <a href="/ai_exam_form.html" target="_blank" class="card-link">Launch Live Form &rarr;</a>
+      </div>
+    </div>
+
+    <!-- WhatsApp Integration Demo -->
+    <div class="whatsapp-demo-box">
+      <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">📲 How to Test via WhatsApp</h2>
+      <p style="color: var(--text-muted); font-size: 14.5px;">
+        Send this sample payload to the bot number on WhatsApp. The headless agent in Render container will open Chromium, solve the questions, and send instant confirmation:
+      </p>
+      <div class="code-block">
+Fill form: https://ai-form-automation-agents.onrender.com/google_exam_form.html<br>
+Name: Ayushmaan Rathore<br>
+Roll: 2026CS999<br>
+Email: ayush@example.com<br>
+College: Oriental College of Technology<br>
+auto answer
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div style="text-align: center; margin-bottom: 40px;">
+      <p style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 12px;">Powered by Enterprise Cloud Stack</p>
+      <div class="tech-stack">
+        <span class="tech-badge">🐍 Python 3.11+</span>
+        <span class="tech-badge">🎭 Microsoft Playwright (Headless Chromium)</span>
+        <span class="tech-badge">🦜 LangGraph Multi-Agent Architecture</span>
+        <span class="tech-badge">⚡ FastAPI High-Performance Async Server</span>
+        <span class="tech-badge">💬 Meta WhatsApp Cloud API</span>
+        <span class="tech-badge">🐳 Docker Linux Container</span>
+        <span class="tech-badge">☁️ Render.com 24/7 Cloud Hosting</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      Built with ❤️ by Ayushmaan | Autonomous Agentic AI Form Automation System
+    </footer>
+  </div>
+
+</body>
+</html>
