@@ -11,6 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
 # Copy and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN playwright install chromium
 
 # Copy application source code and HTML forms
 COPY . .
