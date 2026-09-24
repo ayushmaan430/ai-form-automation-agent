@@ -1,4 +1,11 @@
 import os
+import sys
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 from typing import Dict, Any, Optional
 from fastapi import FastAPI, Request, Query, HTTPException
 from fastapi.responses import PlainTextResponse, FileResponse
@@ -217,6 +224,16 @@ def process_user_message(user_id: str, message_text: str) -> str:
         if k in dynamic_labels:
             return dynamic_labels[k]
         return k.replace("_", " ").title()
+
+    # Check if 0 fields were detected (e.g. closed Google Form or login page)
+    if not session.get("fields"):
+        session["status"] = "form_inaccessible"
+        return (
+            f"⚠️ *Form Accessible Nahi Hai ya Closed Hai*\n\n"
+            f"Is link par koi form input fields nahi mile.\n"
+            f"👉 Agar yeh Google Form hai, toh yeh *'Closed / No longer accepting responses'* ho sakta hai ya login maang raha hai.\n\n"
+            f"Kripya kisi active form ka link bhejein (jaise: `https://ai-form-automation-agents.onrender.com/google_exam_form.html`)."
+        )
 
     if missing:
         session["status"] = "waiting_for_data"
