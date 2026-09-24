@@ -179,9 +179,9 @@ def form_analyzer(state: AgentState) -> Dict[str, Any]:
         # Check parent question / form-group label
         if not label_text or input_type in ["radio", "checkbox"]:
             try:
-                container = field.locator('xpath=ancestor::*[contains(@class, "form-group") or contains(@class, "question") or contains(@class, "field") or name()="fieldset"][1]')
+                container = field.locator('xpath=ancestor::*[contains(@class, "form-group") or contains(@class, "question") or contains(@class, "field") or contains(@role, "listitem") or contains(@class, "geS5n") or name()="fieldset"][1]')
                 if container.count() > 0:
-                    group_lbl = container.locator('label:not([for]), legend, .question-title, strong, b').first
+                    group_lbl = container.locator('.M7eMe, [role="heading"], label:not([for]), legend, .question-title, strong, b').first
                     if group_lbl.count() > 0:
                         group_text = group_lbl.inner_text().strip()
                         if group_text:
@@ -275,9 +275,9 @@ def form_analyzer(state: AgentState) -> Dict[str, Any]:
                 pass
         if not label_text:
             try:
-                container = field.locator('xpath=ancestor::*[contains(@class, "form-group") or contains(@class, "question") or contains(@class, "field")][1]')
+                container = field.locator('xpath=ancestor::*[contains(@class, "form-group") or contains(@class, "question") or contains(@class, "field") or contains(@role, "listitem") or contains(@class, "geS5n")][1]')
                 if container.count() > 0:
-                    c_lbl = container.locator('label, strong, b').first
+                    c_lbl = container.locator('.M7eMe, [role="heading"], label, strong, b').first
                     if c_lbl.count() > 0:
                         label_text = c_lbl.inner_text().strip()
             except Exception:
